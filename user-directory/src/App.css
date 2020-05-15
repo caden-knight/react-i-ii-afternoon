@@ -16,7 +16,7 @@ body {
   padding-bottom: 20px;
   color: black;
   font-size: 25px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   margin-left: 50px;
 }
 
@@ -26,20 +26,20 @@ body {
   height: 45vh;
   width: 75vw;
   background-color: rgb(235, 235, 235);
-  margin-bottom: 50px;
+  margin-bottom: 5px;
   margin-top: 50px;
   
 }
 
 .contents {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   display: inline;
   text-align: left;
 }
 
 .count {
   text-align: right;
-  font-size: 35px;
+  font-size: 30px;
   font-weight: bolder;
 }
 .name {
@@ -71,12 +71,22 @@ li {
 
 .next {
   position: absolute;
-  right: 85px;
+  right: 130px;
 }
 
 .prev {
   position: absolute;
-  left: 85px;
+  left: 130px;
+}
+
+button {
+  height: 50px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bolder;
+  font-size: 16px;
+  color: aliceblue;
+  background-color: rgb(34, 34, 34);
+  border: none
 }
 
 

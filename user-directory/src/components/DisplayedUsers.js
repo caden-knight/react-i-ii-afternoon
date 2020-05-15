@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import UserContainer from './UserContainer'
 
 class DisplayedUsers extends Component {
   constructor() {
@@ -11,60 +12,62 @@ class DisplayedUsers extends Component {
     };
     this.nextUser = this.nextUser.bind(this);
     this.prevUser = this.prevUser.bind(this);
+    
   }
   
   nextUser() {
     let {count} = this.state
     let users = this.props.users
-    let userId = this.props.users[1].id
     count = count + 1;
     this.setState({ count: count });
-    for(let i = count; i < users.length; ) {
-      if(i === users[i].id) {
-        console.log(i, users[i])
-        
+
+  if (count > users.length - 2) {
+    this.setState({
+      isActiveNext: false,
+    });
+  }
+  if ( count > 0) {
+    this.setState({
+      isActivePrev: true,
+    });
+  }
+}
+
+    prevUser() {
+      let {count} = this.state
+      count = count - 1;
+      this.setState({ count: count });
+      if ( count < 1) {
+        this.setState({
+          isActivePrev: false,
+        });
+      }
+      if ( count > 0) {
+        this.setState({ isActiveNext: true });
       }
     }
-    if (count > 25) {
-      this.setState({
-        isActiveNext: false,
-      });
-    }
-    if ( count > 1) {
-      this.setState({
-        isActivePrev: true,
-      });
-    }
-    console.log("next user " + count );
-  }
-
-  prevUser() {
-    let {count} = this.state
-     count = count - 1;
-    this.setState({ count: count });
-    if ( count < 2) {
-      this.setState({
-        isActivePrev: false,
-      });
-    }
-    if ( count > 0) {
-      this.setState({ isActiveNext: true });
-    }
-    console.log("prev user " + count);
 
     
-  }
+  
 
   render() {
     //console.log(this.props.users);
+    const users = this.props.users.map((user) => {
+      return (
+        <div key={user.id}>
+          <UserContainer userData={user} />
+        </div>
+      )
+    })
+    let {count} = this.state
     return (
       <div>
-        
+        {users[count]}
         {this.state.isActivePrev ? (
-          <button className='prev' onClick={this.prevUser}>Previous</button>
+          <button className='prev' onClick={this.prevUser}> {'< '}Previous</button>
         ) : null}
         {this.state.isActiveNext ? (
-          <button className='next' onClick={this.nextUser}>Next</button>
+          <button className='next' onClick={this.nextUser}>Next ></button>
         ) : null}
       </div>
     );
